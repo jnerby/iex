@@ -23,6 +23,11 @@ def get_stock_data(symbol):
     return result
 
 @app.route("/")
+def index():
+    return render_template("home.html")
+
+
+@app.route("/quote")
 def get_stock_price():
 # url = "https://cloud.iexapis.com/v1/"
 # token = os.environ.get("API_KEY")
@@ -35,12 +40,12 @@ def get_stock_price():
 
 # print(result[0]["close"])
 
-    # symbol = request.args.get("symbol")
-    symbol = "AAPL"
+    symbol = request.args.get("symbol")
+    # symbol = "AAPL"
     stock_data = get_stock_data(symbol)
-    close = stock_data[0]
+    stock_data = stock_data[0]
 
-    return render_template("home.html", close=close)
+    return render_template("quote.html", symbol=symbol, stock_data=stock_data)
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
