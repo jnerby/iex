@@ -29,19 +29,7 @@ def index():
 
 @app.route("/quote")
 def get_stock_price():
-# url = "https://cloud.iexapis.com/v1/"
-# token = os.environ.get("API_KEY")
-# params = {"token": token}
-# symbol = "AAPL"
-# stock = 'stock/' + symbol + '/chart'
-# resp = requests.get(url + stock, params=params)
-
-# result = resp.json()
-
-# print(result[0]["close"])
-
     symbol = request.args.get("symbol")
-    # symbol = "AAPL"
     stock_data = get_stock_data(symbol)
     stock_data = stock_data[0]
 
